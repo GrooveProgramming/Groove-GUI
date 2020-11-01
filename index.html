@@ -3,8 +3,44 @@
   <script src="blocks_compressed.js"></script>
   <script src="msg/js/en.js"></script>
   <script src="javascript_compressed.js"></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+    table {
+      height: 100%;
+      width: 100%;
+    }
+    #blocklyArea {
+      height: 99%;
+      background: #fc9;
+      text-align: center;
+    }
+  </style>
   </head><body>
-  <div id="blocklyDiv" style="width:700px;height:500px"></div>
+    <table>
+      <tr>
+        <td>
+
+        </td>
+      </tr>
+      <tr>
+        <td id="blocklyArea">
+        </td>
+      </tr>
+    </table>
+  
+    <div id="blocklyDiv" style="position: absolute"></div>
   <xml id="toolbox" style="display: none">
     <category name="Colour" colour="%{BKY_COLOUR_HUE}">
       <block type = "colour_picker"></block>
@@ -131,6 +167,28 @@
     </category>
   </xml>
   <script>
-   var workspace = Blockly.inject('blocklyDiv',
+    var blocklyArea = document.getElementById('blocklyArea');
+    var blocklyDiv = document.getElementById('blocklyDiv');
+    var workspace = Blockly.inject(blocklyDiv,
         {toolbox: document.getElementById('toolbox')});
-    </script></body></html>
+    var onresize = function(e) {
+      // Compute the absolute coordinates and dimensions of blocklyArea.
+      var element = blocklyArea;
+      var x = 0;
+      var y = 0;
+      do {
+        x += element.offsetLeft;
+        y += element.offsetTop;
+        element = element.offsetParent;
+      } while (element);
+      // Position blocklyDiv over blocklyArea.
+      blocklyDiv.style.left = x + 'px';
+      blocklyDiv.style.top = y + 'px';
+      blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
+      blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+      Blockly.svgResize(workspace);
+    };
+    window.addEventListener('resize', onresize, false);
+    onresize();
+    Blockly.svgResize(workspace);
+  </script></body></html>
