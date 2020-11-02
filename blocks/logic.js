@@ -51,6 +51,24 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "tooltip": "%{BKY_LOGIC_BOOLEAN_TOOLTIP}",
     "helpUrl": "%{BKY_LOGIC_BOOLEAN_HELPURL}"
   },
+  //Forever Block
+  [{
+  "type": "loops_forever",
+  "message0": "Forever %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "Do"
+    }
+  ],
+  "previousStatement": null,
+  "colour": 60,
+  "tooltip": "",
+  "helpUrl": ""
+}]
   // Block for if/elseif/else condition.
   {
     "type": "controls_if",
