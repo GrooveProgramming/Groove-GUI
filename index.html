@@ -3,47 +3,11 @@
   <script src="blocks_compressed.js"></script>
   <script src="msg/js/en.js"></script>
   <script src="javascript_compressed.js"></script>
-   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-    body {
-      background-color: #fff;
-      font-family: sans-serif;
-      overflow: hidden;
-    }
-    h1 {
-      font-weight: normal;
-      font-size: 140%;
-    }
-    table {
-      height: 100%;
-      width: 100%;
-    }
-    #blocklyArea {
-      height: 99%;
-      background: #fc9;
-      text-align: center;
-    }
-  </style>
   </head><body>
-  <img src="https://grooveprogramming.github.io/Groovelogo.svg" alt="Italian Trulli">
-    <table>
-      <tr>
-        <td>
-
-        </td>
-      </tr>
-      <tr>
-        <td id="blocklyArea">
-        </td>
-      </tr>
-    </table>
-  
-    <div id="blocklyDiv" style=""width:700px;height:500px></div>
+<a href="/GrooveProgramming.github.io"><img src="Groovelogo.svg" width="200" height="40" alt="Groove programming"></a>
+    <div id="blocklyDiv" style="height: 500px; width: 800px;"></div>
   <xml id="toolbox" style="display: none">
-    <category name="Color" colour="%{BKY_COLOUR_HUE}">
+    <category name="Colour" colour="%{BKY_COLOUR_HUE}">
       <block type = "colour_picker"></block>
       <block type = "colour_random"></block>
       <block type = "colour_rgb"></block>
@@ -107,7 +71,7 @@
       <block type="controls_forEach"></block>
       <block type="controls_flow_statements"></block>
     </category>
-    <category name="Mathematics" colour="%{BKY_MATH_HUE}">
+    <category name="Math" colour="%{BKY_MATH_HUE}">
       <block type="math_number">
         <field name="NUM">123</field>
       </block>
@@ -184,25 +148,5 @@
           minScale: 0.3,
           scaleSpeed: 1.2,
           pinch: true},
-     trashcan: true});
-     var onresize = function(e) {
-      // Compute the absolute coordinates and dimensions of blocklyArea.
-      var element = blocklyArea;
-      var x = 0;
-      var y = 0;
-      do {
-        x += element.offsetLeft;
-        y += element.offsetTop;
-        element = element.offsetParent;
-      } while (element);
-      // Position blocklyDiv over blocklyArea.
-      blocklyDiv.style.left = x + 'px';
-      blocklyDiv.style.top = y + 'px';
-      blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
-      blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
-      Blockly.svgResize(workspace);
-    };
-    window.addEventListener('resize', onresize, false);
-    onresize();
-    Blockly.svgResize(workspace);
+     trashcan: false});
   </script></body></html>
