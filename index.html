@@ -1,11 +1,13 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+<head>
   <script src="blockly_compressed.js"></script>
   <script src="blocks_compressed.js"></script>
-  <script src="msg/js/en.js"></script>
   <script src="javascript_compressed.js"></script>
+  <script src="msg/js/en.js"></script>
   </head><body>
-<a href="/GrooveProgramming.github.io"><img src="https://grooveprogramming.github.io/Groovelogo.svg" width="200" height="40" alt="Italian Trulli"></a>
-    <div id="blocklyDiv" style="height: 500px; width: 800px;"></div>
+    <a href="/GrooveProgramming.github.io"><img src="https://grooveprogramming.github.io/Groovelogo.svg" width="100" height="70" alt="Italian Trulli"></a><button onclick="showCode()">Show JavaScript</button><button onclick="runCode()">Run JavaScript</button><button onclick="exportCode()">Export Code</button><button onclick="importCode()">Import Code</button>
+    <div id="blocklyDiv" style="height: 500px; width: 800px;"></div> 
   <xml id="toolbox" style="display: none">
     <category name="Colour" colour="%{BKY_COLOUR_HUE}">
       <block type = "colour_picker"></block>
@@ -24,6 +26,7 @@
       <block type="text_isEmpty"></block>
       <block type="text_indexOf"></block>
       <block type="text_charAt"></block>
+      <block type="text_print"></block>
     </category>
     <category name="Logic" colour="%{BKY_LOGIC_HUE}">
         <block type="controls_if"></block>
@@ -134,7 +137,8 @@
   <script>
     
     var workspace = Blockly.inject('blocklyDiv',
-    {toolbox: document.getElementById('toolbox'),
+    {media: '../../media/',
+    toolbox: document.getElementById('toolbox'),
      grid:
          {spacing: 20,
           length: 3,
@@ -149,4 +153,40 @@
           scaleSpeed: 1.2,
           pinch: true},
      trashcan: false});
-  </script></body></html>
+
+
+     function showCode() {       // Temporary
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.JavaScript.workspaceToCode(workspace);
+      alert(code);
+    }
+
+    function runCode() {
+      // Generate JavaScript code and run it.
+      window.LoopTrap = 1000;
+      Blockly.JavaScript.INFINITE_LOOP_TRAP =
+          'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+      var code = Blockly.JavaScript.workspaceToCode(workspace);
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      try {
+        eval(code);
+      } catch (e) {
+        alert(e);
+      }
+    }
+
+    function exportCode() {
+var xml = Blockly.Xml.workspaceToDom(workspace);
+var xml_text = Blockly.Xml.domToText(xml);
+alert(xml_text)
+    }
+
+    function importCode() {
+var xml_text = prompt("URL?")
+var xml = Blockly.Xml.textToDom(xml_text);
+Blockly.Xml.domToWorkspace(xml, workspace);
+    }
+
+  </script>
+  </body>
+  </html>
