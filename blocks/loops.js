@@ -34,7 +34,25 @@ goog.require('Blockly.Warning');
 Blockly.Constants.Loops.HUE = 120;
 
 Blockly.defineBlocksWithJsonArray([  // BEGIN JSON
-
+  
+ //Forever Block
+  [{
+  "type": "loops_forever",
+  "message0": "Forever %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "Do"
+    }
+  ],
+  "previousStatement": null,
+  "colour": 60,
+  "tooltip": "",
+  "helpUrl": ""
+}]
 // Block for repeat n times (external number).
   {
     "type": "controls_repeat_ext",
