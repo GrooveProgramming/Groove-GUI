@@ -53,6 +53,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON
   "tooltip": "",
   "helpUrl": ""
 }
+
+{
     "type": "controls_repeat_ext",
     "message0": "%{BKY_CONTROLS_REPEAT_TITLE}",
     "args0": [{
